@@ -58,6 +58,7 @@ public class WordleDictionary {
     public List<String> getWords() {
         return words;
     }
+
     public static String compare(String guess, String answer) {
         StringBuilder result = new StringBuilder();
         for (int i = 0; i < guess.length(); i++) {
