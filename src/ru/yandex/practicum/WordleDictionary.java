@@ -43,11 +43,11 @@ public class WordleDictionary {
 
     }
 
-    public boolean contains(String word){
+    public boolean contains(String word) {
         return words.contains(word);
     }
 
-    public long size(){
+    public long size() {
         return words.size();
     }
 
@@ -55,17 +55,17 @@ public class WordleDictionary {
         return words.get(random.nextInt(words.size()));
     }
 
-    public List<String> getWords(){
+    public List<String> getWords() {
         return words;
     }
     public static String compare(String guess, String answer) {
         StringBuilder result = new StringBuilder();
-        for (int i = 0; i < guess.length(); i++){
+        for (int i = 0; i < guess.length(); i++) {
             char c = guess.charAt(i);
 
-            if (answer.charAt(i) == c){
+            if (answer.charAt(i) == c) {
                 result.append('+');
-            } else if (answer.indexOf(c) >= 0){
+            } else if (answer.indexOf(c) >= 0) {
                 result.append('^');
             } else {
                 result.append('-');

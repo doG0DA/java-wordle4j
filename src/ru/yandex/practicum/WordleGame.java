@@ -27,7 +27,7 @@ public class WordleGame {
         this(dictionary, dictionary.getRandomWord(), log);
     }
 
-    public void isWin(){
+    public void isWin() {
         win = true;
     }
 
@@ -37,12 +37,12 @@ public class WordleGame {
         return win || steps == 0;
     }
 
-    public String makeMove(String word) throws WordNotInDictionary{
+    public String makeMove(String word) throws WordNotInDictionary {
         String normalized = WordleDictionary.normalize(word);
-        if (!WordleDictionary.isValidWord(normalized)){
+        if (!WordleDictionary.isValidWord(normalized)) {
             throw new WordNotInDictionary("Данного слова нет в словаре");
         }
-        if (!dictionary.contains(normalized)){
+        if (!dictionary.contains(normalized)) {
             throw new WordNotInDictionary("Данного слова нет в словаре");
         }
         steps--;
@@ -52,9 +52,9 @@ public class WordleGame {
         return result;
     }
 
-    private String checkWord(String word){
+    private String checkWord(String word) {
         String result = WordleDictionary.compare(word, answer);
-        if (word.equals(answer)){
+        if (word.equals(answer)) {
             win = true;
             return "+++++";
         }
@@ -91,15 +91,15 @@ public class WordleGame {
         return hint;
     }
 
-    public String getAnswer(){
+    public String getAnswer() {
         return answer;
     }
 
-    public int getSteps(){
+    public int getSteps() {
         return steps;
     }
 
-    public boolean getWin(){
+    public boolean getWin() {
         return win;
     }
 
