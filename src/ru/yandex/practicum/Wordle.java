@@ -18,26 +18,26 @@ public class Wordle {
                 WordleGame game = new WordleGame(dictionary, log);
                 log.println(game.getAnswer());
                 play(game);
-            } catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace(log);
                 System.out.println("Произошла ошибка");
             }
-        } catch (IOException e){
+        } catch (IOException e) {
             System.out.println("Не удалось создать лог-файл: " + e.getMessage());
         }
 
     }
 
 
-    public static void play(WordleGame game){
+    public static void play(WordleGame game) {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Вы попали в игру Wordle, чтобы отгадать слово у Вас будет 6 попыток, а также при нажатии Enter - компьютер будет давать Вам подсказки! Удачи!");
 
-        while (!game.isFinished()){
+        while (!game.isFinished()) {
             String word = scanner.nextLine();
 
-            if (word.isBlank()){
+            if (word.isBlank()) {
                 System.out.println(game.getHint());
                 continue;
             }
@@ -49,11 +49,11 @@ public class Wordle {
                 if (!game.getWin() && game.getSteps() > 0) {
                     System.out.println("У Вас осталось " + game.getSteps() + " попыток!");
                 }
-            } catch (WordNotInDictionary e){
+            } catch (WordNotInDictionary e) {
                 System.out.println(e.getMessage() + ". Введите слово ещё раз.");
             }
         }
-        if (game.getWin()){
+        if (game.getWin()) {
             System.out.println("Поздравляем Вы угадали слово");
             System.out.println(game.getAnswer());
         } else {
