@@ -7,7 +7,7 @@ public class WordleGame {
 
     private final Set<String> givenHints = new HashSet<>();
     private final String answer;
-    private PrintWriter log;
+    private final PrintWriter log;
     private int steps;
     private final WordleDictionary dictionary;
     private boolean win;
@@ -37,19 +37,22 @@ public class WordleGame {
         return win || steps == 0;
     }
 
-    public String makeMove(String word) throws WordNotInDictionary {
-        String normalized = WordleDictionary.normalize(word);
-        if (!WordleDictionary.isValidWord(normalized)) {
-            throw new WordNotInDictionary("Данного слова нет в словаре");
-        }
-        if (!dictionary.contains(normalized)) {
-            throw new WordNotInDictionary("Данного слова нет в словаре");
-        }
+    public String makeMove(String word) throws WordNotInDictionaryException {
+        String normalized = dictionary.normalize(word);
+        validate(normalized);
         steps--;
         String result = checkWord(normalized);
         history.put(normalized, result);
         log.println("Ход " + word + "--> " + result + " осталось шагов: " + steps);
         return result;
+    }
+    private void validate(String word) throws WordNotInDictionaryException{
+        if (!dictionary.isValidWord(word)) {
+            throw new WordNotInDictionaryException();
+        }
+        if (!dictionary.contains(word)) {
+            throw new WordNotInDictionaryException();
+        }
     }
 
     private String checkWord(String word) {

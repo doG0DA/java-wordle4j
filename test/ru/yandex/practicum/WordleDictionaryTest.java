@@ -2,6 +2,7 @@ package ru.yandex.practicum;
 
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -9,15 +10,19 @@ import static org.junit.jupiter.api.Assertions.*;
 class WordleDictionaryTest {
 
     @Test
-    void normalize() {
-        assertEquals("ежика", WordleDictionary.normalize(" Ёжика "));
+    void normalize() throws IOException,DictionaryIsEmptyException {
+        WordleDictionaryLoader loader = new WordleDictionaryLoader();
+        WordleDictionary dictionary = loader.load("words_ru.txt");
+        assertEquals("ежика", dictionary.normalize(" Ёжика "));
     }
 
     @Test
-    void isValidWord() {
-        assertTrue(WordleDictionary.isValidWord("герой"));
-        assertFalse(WordleDictionary.isValidWord("кот"));
-        assertFalse(WordleDictionary.isValidWord("hello"));
+    void isValidWord() throws IOException,DictionaryIsEmptyException{
+        WordleDictionaryLoader loader = new WordleDictionaryLoader();
+        WordleDictionary dictionary = loader.load("words_ru.txt");
+        assertTrue(dictionary.isValidWord("герой"));
+        assertFalse(dictionary.isValidWord("кот"));
+        assertFalse(dictionary.isValidWord("hello"));
     }
 
     @Test

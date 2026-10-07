@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class WordleDictionaryLoader {
 
-    public WordleDictionary load(String fileName) throws IOException,DictionaryIsEmpty {
+    public WordleDictionary load(String fileName) throws IOException, DictionaryIsEmptyException {
         List<String> result = new ArrayList<>();
         try (BufferedReader read = new BufferedReader(new FileReader(fileName, StandardCharsets.UTF_8))) {
             String line;
@@ -23,8 +23,8 @@ public class WordleDictionaryLoader {
                     result.add(line);
                 }
                 return new WordleDictionary(result);
-            } catch (DictionaryIsEmpty exc) {
-                throw new DictionaryIsEmpty("Файл пуст");
+            } catch (DictionaryIsEmptyException exc) {
+                throw new DictionaryIsEmptyException("Файл пуст");
             }
         }
     }

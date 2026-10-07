@@ -49,7 +49,7 @@ public class Wordle {
                 if (!game.getWin() && game.getSteps() > 0) {
                     System.out.println("У Вас осталось " + game.getSteps() + " попыток!");
                 }
-            } catch (WordNotInDictionary e) {
+            } catch (WordNotInDictionaryException e) {
                 System.out.println(e.getMessage() + ". Введите слово ещё раз.");
             }
         }
