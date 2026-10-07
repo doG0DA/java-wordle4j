@@ -46,7 +46,7 @@ public class WordleGame {
         log.println("Ход " + word + "--> " + result + " осталось шагов: " + steps);
         return result;
     }
-    private void validate(String word) throws WordNotInDictionaryException{
+    private void validate(String word) throws WordNotInDictionaryException {
         if (!dictionary.isValidWord(word)) {
             throw new WordNotInDictionaryException();
         }
